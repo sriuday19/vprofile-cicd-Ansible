@@ -2,7 +2,6 @@
 - name: Setup Tomcat8 & Deploy Artifact
   hosts: appsrvgrp
   become: yes
-  gather_facts: False
   vars:
     timestamp: "{{ansible_date_time.date}}_{{ansible_date_time.hour}}_{{ansible_date_time.minute}}"
   tasks:
