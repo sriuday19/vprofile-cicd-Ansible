@@ -12,7 +12,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.82.67:8081"
         NEXUS_REPOSITORY = "vprofile-app"
-        NEXUS_CREDENTIAL_ID = "nexus-token"
+        NEXUS_CREDENTIAL_ID = "Nexus-token"
     }
 
     stages {
