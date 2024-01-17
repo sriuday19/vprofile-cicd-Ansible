@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk "OracleJDK17"
+        jdk "OracleJDK8"
         maven "MAVEN3"
     }
 
