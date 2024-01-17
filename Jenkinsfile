@@ -103,7 +103,7 @@ pipeline {
                     installation: 'ansible',
                     credentialsId: 'app01',
                     colorized: true,
-                    disablehostKeyChecking: True,
+                    disablehostKeyChecking: true,
                     extraVars : [
                         USER: 'admin',
                         PAss: NEXU_PASS,
