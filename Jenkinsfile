@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        scannerHome = tool 'sonar4'
+        scannerHome = tool 'sonar5'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "http://34.238.114.178:8081"
