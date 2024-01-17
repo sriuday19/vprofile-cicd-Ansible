@@ -2,22 +2,20 @@ pipeline {
     agent any
 
     tools {
-        jdk "OracleJDK8"
+        jdk "OracleJDK17"
         maven "MAVEN3"
     }
 
     environment {
         scannerHome = tool 'sonar4'
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "http://34.238.114.178:8081"
+        NEXUS_REPOSITORY = "vprofile-app"
+        NEXUS_CREDENTIAL_ID = "nexus-token"
     }
 
     stages {
-
-        stage('fecth code') {
-
-            steps {
-                git branch:'main', url: 'https://github.com/sriuday19/vprofile-ci.git'
-            }
-        }
 
         stage('Build code') {
 
@@ -73,6 +71,26 @@ pipeline {
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: true
                 }
+            }
+        }
+
+        stage('Uploading the artifasct to nexus') {
+            steps {
+                nexusArtifactUploader(
+                nexusVersion: NEXUS_VERSION,
+                protocol: NEXUS_PROTOCOL,
+                nexusUrl: NEXUS_PROTOCOL,
+                groupId: 'QA',
+                version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                repository: NEXUS_REPOSITORY,
+                credentialsId: NEXUS_CREDENTIAL_ID,
+                artifacts: [
+                [artifactId: 'vprofile-app',
+                 classifier: '',
+                 file: 'target/vprofile-v2.war',
+                 type: 'war']
+                ]
+            )
             }
         }
     }
