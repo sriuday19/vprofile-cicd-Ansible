@@ -103,10 +103,10 @@ pipeline {
                     installation: 'ansible',
                     credentialsId: 'app01',
                     colorized: true,
-                    disablehostKeyChecking: true,
+                    disableHostKeyChecking: true,
                     extraVars : [
                         USER: 'admin',
-                        PAss: NEXU_PASS,
+                        PASS: NEXU_PASS,
                         nexusip: '172.31.82.67',
                         reponame: 'vprofile-repo',
                         groupid: 'QA',
