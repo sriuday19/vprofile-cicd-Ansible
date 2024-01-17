@@ -13,7 +13,7 @@ pipeline {
         NEXUS_URL = "172.31.82.67:8081"
         NEXUS_REPOSITORY = "vprofile-repo"
         NEXUS_CREDENTIAL_ID = "Nexus-token"
-        NEXU_PASS = credentials('nexuspass')
+        NEXUS_PASS = credentials('nexuspass')
     }
 
     stages {
@@ -106,7 +106,7 @@ pipeline {
                     disableHostKeyChecking: true,
                     extraVars : [
                         USER: 'admin',
-                        PASS: NEXU_PASS,
+                        PASS: NEXUS_PASS,
                         nexusip: '172.31.82.67',
                         reponame: 'vprofile-repo',
                         groupid: 'QA',
