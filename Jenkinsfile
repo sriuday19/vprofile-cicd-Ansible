@@ -10,7 +10,7 @@ pipeline {
         scannerHome = tool 'sonar4'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "34.238.114.178:8081"
+        NEXUS_URL = "172.31.82.67:8081"
         NEXUS_REPOSITORY = "vprofile-app"
         NEXUS_CREDENTIAL_ID = "nexus-token"
     }
@@ -88,7 +88,7 @@ pipeline {
                 [artifactId: 'vprofile-app',
                  classifier: '',
                  file: 'target/vprofile-v2.war',
-                 type: 'war'],
+                 type: 'war']
                 ]
             )
             }
