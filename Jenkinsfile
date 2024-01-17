@@ -10,7 +10,7 @@ pipeline {
         scannerHome = tool 'sonar4'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://34.238.114.178:8081"
+        NEXUS_URL = "34.238.114.178:8081"
         NEXUS_REPOSITORY = "vprofile-app"
         NEXUS_CREDENTIAL_ID = "nexus-token"
     }
@@ -79,7 +79,7 @@ pipeline {
                 nexusArtifactUploader(
                 nexusVersion: NEXUS_VERSION,
                 protocol: NEXUS_PROTOCOL,
-                nexusUrl: NEXUS_PROTOCOL,
+                nexusUrl: NEXUS_URL,
                 groupId: 'QA',
                 version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                 repository: NEXUS_REPOSITORY,
