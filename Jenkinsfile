@@ -13,6 +13,7 @@ pipeline {
         NEXUS_URL = "172.31.82.67:8081"
         NEXUS_REPOSITORY = "vprofile-repo"
         NEXUS_CREDENTIAL_ID = "Nexus-token"
+        NEXU_PASS = credentials('nexuspass')
     }
 
     stages {
@@ -91,6 +92,30 @@ pipeline {
                  type: 'war']
                 ]
             )
+            }
+        }
+
+        stage('Ansible Deploy to staging') {
+            steps {
+                ansiblePlaybook([
+                    playbook: 'ansible/site.yml',
+                    inventory: 'ansible/stage-inventory',
+                    installation: 'ansible',
+                    credentialsId: 'app01',
+                    colorized: true,
+                    disablehostKeyChecking: True,
+                    extraVars : [
+                        USER: 'admin',
+                        PAss: NEXU_PASS,
+                        nexusip: '172.31.82.67',
+                        reponame: 'vprofile-repo',
+                        groupid: 'QA',
+                        time: "${env.BUILD_TIMESTAMP}",
+                        build: "${env.BUILD_ID}",
+                        artifactId: 'vprofile-app',
+                        vprofile_version: "vprofile-app-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
+                    ]
+                ])
             }
         }
     }
