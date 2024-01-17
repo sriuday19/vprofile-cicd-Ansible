@@ -88,7 +88,7 @@ pipeline {
                 [artifactId: 'vprofile-app',
                  classifier: '',
                  file: 'target/vprofile-v2.war',
-                 type: 'war']
+                 type: 'war'],
                 ]
             )
             }
